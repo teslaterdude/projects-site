@@ -152,31 +152,52 @@
       box-shadow: 0 12px 40px rgba(74,140,255,0.12);
     }
 
+    /* ─── CARD HERO THUMBNAIL ─── */
     .card-thumb {
-      width: 100%; aspect-ratio: 16/9;
-      background: var(--bg-card-alt);
-      display: flex; align-items: center; justify-content: center;
+      height: 148px;
+      position: relative; overflow: hidden;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 16px 20px;
       border-bottom: 1px solid var(--border);
-      overflow: hidden; position: relative;
+      flex-shrink: 0;
     }
-    .card-thumb img {
-      width: 100%; height: 100%; object-fit: cover;
-      transition: transform 0.3s ease;
-    }
-    .card:hover .card-thumb img { transform: scale(1.03); }
 
-    .card-thumb-placeholder {
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center; gap: 8px;
-      width: 100%; height: 100%;
-      background: repeating-linear-gradient(
-        45deg,
-        rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px,
-        transparent 1px, transparent 12px
-      );
+    /* Dot texture overlay */
+    .card-thumb::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.055) 1px, transparent 1px);
+      background-size: 18px 18px;
+      z-index: 1;
     }
-    .thumb-emoji { font-size: 36px; opacity: 0.5; }
-    .thumb-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* Gradient themes */
+    .thumb-blue    { background: linear-gradient(145deg, #0b1245 0%, #1a2680 55%, #2d45a8 100%); }
+    .thumb-teal    { background: linear-gradient(145deg, #052d28 0%, #0a4d42 55%, #0d6b5c 100%); }
+    .thumb-purple  { background: linear-gradient(145deg, #1a0a3d 0%, #2d1065 55%, #4a1d9e 100%); }
+    .thumb-pink    { background: linear-gradient(145deg, #3d0a28 0%, #651040 55%, #8a1a56 100%); }
+    .thumb-gold    { background: linear-gradient(145deg, #2d1800 0%, #4d2e00 55%, #7a4a0a 100%); }
+    .thumb-navy    { background: linear-gradient(145deg, #04091f 0%, #0a1235 55%, #0d1a4a 100%); }
+
+    /* Corner watermark */
+    .thumb-mark {
+      position: absolute; top: 14px; right: 16px; z-index: 2;
+      font-size: 11px; font-weight: 900; letter-spacing: 0.08em;
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* Label + title text */
+    .thumb-label {
+      font-size: 9.5px; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.12em; color: rgba(255,255,255,0.5);
+      margin-bottom: 6px; position: relative; z-index: 2;
+    }
+    .thumb-title {
+      font-size: 14px; font-weight: 800; color: #fff; line-height: 1.3;
+      position: relative; z-index: 2;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
 
     .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
 
@@ -237,11 +258,10 @@
 
       <!-- 1: Portfolio Site -->
       <a class="card" href="https://portfolio.bryantnankee.com" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">💼</div>
-            <div class="thumb-label">Portfolio Site</div>
-          </div>
+        <div class="card-thumb thumb-blue">
+          <div class="thumb-mark">BN</div>
+          <div class="thumb-label">Professional</div>
+          <div class="thumb-title">Personal Portfolio</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-blue">Professional</span>
@@ -256,11 +276,10 @@
 
       <!-- 2: ECP Web Refresh -->
       <a class="card" href="https://ecp-homepage-mockup.vercel.app/prototype.html" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">🌐</div>
-            <div class="thumb-label">ECP Prototype</div>
-          </div>
+        <div class="card-thumb thumb-teal">
+          <div class="thumb-mark">ECP</div>
+          <div class="thumb-label">Work Project</div>
+          <div class="thumb-title">ECP Website Refresh Prototype</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-teal">Work Project</span>
@@ -275,11 +294,10 @@
 
       <!-- 3: Anne's Derm Site -->
       <a class="card" href="https://anne-pa-guide.vercel.app" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">🩺</div>
-            <div class="thumb-label">Anne PA Guide</div>
-          </div>
+        <div class="card-thumb thumb-purple">
+          <div class="thumb-mark">Anne</div>
+          <div class="thumb-label">Personal</div>
+          <div class="thumb-title">Anne's Derm PA Guide</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-purple">Personal</span>
@@ -294,11 +312,10 @@
 
       <!-- 4: Baby Shower -->
       <a class="card" href="https://baby.thenankees.com" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">🍼</div>
-            <div class="thumb-label">Baby Shower</div>
-          </div>
+        <div class="card-thumb thumb-pink">
+          <div class="thumb-mark">Nankee</div>
+          <div class="thumb-label">Personal</div>
+          <div class="thumb-title">Nankee Baby Shower — July 2026</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-pink">Personal</span>
@@ -313,11 +330,10 @@
 
       <!-- 5: Camp Cleghorn -->
       <a class="card" href="https://camp-cleghorn.pages.dev/" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">⛺</div>
-            <div class="thumb-label">Camp Cleghorn</div>
-          </div>
+        <div class="card-thumb thumb-gold">
+          <div class="thumb-mark">Camp</div>
+          <div class="thumb-label">Client</div>
+          <div class="thumb-title">Camp Cleghorn Website</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-gold">Client</span>
@@ -332,11 +348,10 @@
 
       <!-- 6: Phoenix Neighborhood Guide -->
       <a class="card" href="/phoenix" target="_blank" rel="noopener">
-        <div class="card-thumb">
-          <div class="card-thumb-placeholder">
-            <div class="thumb-emoji">🌵</div>
-            <div class="thumb-label">Phoenix Guide</div>
-          </div>
+        <div class="card-thumb thumb-navy">
+          <div class="thumb-mark">PHX</div>
+          <div class="thumb-label">Personal</div>
+          <div class="thumb-title">Phoenix Area Relocation Guide</div>
         </div>
         <div class="card-body">
           <span class="card-tag tag-gold">Personal</span>
