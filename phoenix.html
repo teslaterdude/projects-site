@@ -1,0 +1,1787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phoenix Area Relocation Guide — Bryant & Anne</title>
+  <style>
+    :root {
+      --terracotta: #C4622D;
+      --terracotta-light: #E8866A;
+      --sand: #F5EDD9;
+      --sage: #6B8F71;
+      --slate: #2D3A4A;
+      --slate-mid: #4A5A6A;
+      --gold: #D4A847;
+      --white: #FFFFFF;
+      --light-gray: #F8F7F5;
+      --border: #E2D9CC;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: var(--light-gray);
+      color: var(--slate);
+      line-height: 1.7;
+    }
+
+    /* HEADER */
+    .hero {
+      background: linear-gradient(135deg, var(--slate) 0%, var(--slate-mid) 60%, var(--terracotta) 100%);
+      color: white;
+      padding: 60px 40px 50px;
+      text-align: center;
+    }
+    .hero-tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracotta-light);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      font-size: 42px;
+      font-weight: normal;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.75);
+      max-width: 620px;
+      margin: 0 auto 30px;
+      font-style: italic;
+    }
+    .hero-meta {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      letter-spacing: 0.5px;
+    }
+
+    /* NAV */
+    .nav-bar {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 0 40px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+    }
+    .nav-inner a {
+      display: block;
+      padding: 16px 16px;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--slate-mid);
+      text-decoration: none;
+      white-space: nowrap;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+    }
+    .nav-inner a:hover {
+      color: var(--terracotta);
+      border-bottom-color: var(--terracotta);
+    }
+
+    /* MAIN LAYOUT */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+
+    /* BUDGET SECTION */
+    .budget-section {
+      background: var(--white);
+      border-left: 5px solid var(--terracotta);
+      margin: 40px auto;
+      max-width: 1100px;
+      padding: 36px 40px;
+      border-radius: 0 8px 8px 0;
+    }
+    .budget-section h2 {
+      font-size: 22px;
+      font-weight: normal;
+      margin-bottom: 20px;
+      color: var(--terracotta);
+      font-family: 'Arial', sans-serif;
+      letter-spacing: -0.3px;
+    }
+    .budget-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+      margin: 24px 0;
+    }
+    .budget-card {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 20px;
+    }
+    .budget-card .label {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--slate-mid);
+      margin-bottom: 8px;
+    }
+    .budget-card .value {
+      font-size: 26px;
+      color: var(--slate);
+      font-weight: bold;
+      font-family: 'Arial', sans-serif;
+    }
+    .budget-card .sub {
+      font-size: 12px;
+      color: var(--slate-mid);
+      margin-top: 4px;
+      font-family: 'Arial', sans-serif;
+    }
+    .budget-note {
+      background: #FFF8EE;
+      border: 1px solid #F0D9AA;
+      border-radius: 6px;
+      padding: 16px 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 13.5px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+    .budget-note strong {
+      color: var(--terracotta);
+    }
+
+    /* SECTION HEADERS */
+    .section-header {
+      padding: 50px 0 24px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+    }
+    .section-header .section-tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 10px;
+    }
+    .section-header h2 {
+      font-size: 30px;
+      font-weight: normal;
+      color: var(--slate);
+    }
+    .section-header p {
+      font-size: 15px;
+      color: var(--slate-mid);
+      margin-top: 8px;
+      font-style: italic;
+    }
+
+    /* NEIGHBORHOOD CARDS */
+    .neighborhood-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      margin-bottom: 40px;
+      overflow: hidden;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.04);
+    }
+    .card-header {
+      padding: 28px 32px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .card-header-left h3 {
+      font-size: 26px;
+      font-weight: normal;
+      color: var(--slate);
+      margin-bottom: 4px;
+    }
+    .card-header-left .card-tag {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+    }
+    .card-header-right {
+      text-align: right;
+    }
+    .fit-badge {
+      display: inline-block;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 20px;
+      margin-bottom: 8px;
+    }
+    .fit-excellent { background: #E8F5E9; color: #2E7D32; }
+    .fit-good { background: #E3F2FD; color: #1565C0; }
+    .fit-stretch { background: #FFF3E0; color: #E65100; }
+    .fit-limited { background: #FCEEF3; color: #AD1457; }
+
+    .price-display .price-range {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+      font-size: 18px;
+      color: var(--slate);
+    }
+    .price-display .price-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      color: var(--slate-mid);
+    }
+
+    .card-body {
+      padding: 28px 32px;
+    }
+
+    .card-description {
+      font-size: 16px;
+      color: var(--slate);
+      line-height: 1.75;
+      margin-bottom: 28px;
+      border-left: 3px solid var(--sand);
+      padding-left: 16px;
+      font-style: italic;
+    }
+
+    /* RATINGS ROW */
+    .ratings-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .rating-item {
+      text-align: center;
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 8px;
+    }
+    .rating-item .rating-icon {
+      font-size: 20px;
+      margin-bottom: 4px;
+    }
+    .rating-item .rating-label {
+      font-family: 'Arial', sans-serif;
+      font-size: 9px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate-mid);
+      margin-bottom: 6px;
+    }
+    .stars {
+      color: var(--gold);
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+    .stars .empty { color: #DDD; }
+
+    /* PROS / CONS */
+    .pros-cons {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 28px;
+    }
+    .pros, .cons {
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .pros {
+      background: #F1F8F2;
+      border: 1px solid #C8E6C9;
+    }
+    .cons {
+      background: #FFF9F5;
+      border: 1px solid #F5D5BF;
+    }
+    .pros h4, .cons h4 {
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+    .pros h4 { color: #2E7D32; }
+    .cons h4 { color: #BF360C; }
+    .pros ul, .cons ul {
+      list-style: none;
+      padding: 0;
+    }
+    .pros ul li, .cons ul li {
+      font-family: 'Arial', sans-serif;
+      font-size: 13.5px;
+      color: var(--slate);
+      padding: 4px 0 4px 20px;
+      position: relative;
+      line-height: 1.5;
+    }
+    .pros ul li::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #4CAF50;
+      font-weight: bold;
+    }
+    .cons ul li::before {
+      content: '✗';
+      position: absolute;
+      left: 0;
+      color: #FF7043;
+      font-weight: bold;
+    }
+
+    /* DETAILS GRID */
+    .details-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .detail-block {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+    }
+    .detail-block h5 {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 10px;
+    }
+    .detail-block ul {
+      list-style: none;
+      padding: 0;
+    }
+    .detail-block ul li {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: var(--slate);
+      padding: 3px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .detail-block ul li:last-child { border-bottom: none; }
+
+    /* WHAT YOU GET BOX */
+    .what-you-get {
+      background: linear-gradient(135deg, var(--slate) 0%, var(--slate-mid) 100%);
+      color: white;
+      border-radius: 8px;
+      padding: 20px 24px;
+      margin-bottom: 20px;
+    }
+    .what-you-get h5 {
+      font-family: 'Arial', sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--terracotta-light);
+      margin-bottom: 10px;
+    }
+    .what-you-get p {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.9);
+    }
+
+    /* LINKS */
+    .card-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .link-btn {
+      display: inline-block;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    .link-btn:hover { opacity: 0.85; }
+    .link-primary {
+      background: var(--terracotta);
+      color: white;
+    }
+    .link-secondary {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      color: var(--slate);
+    }
+
+    /* SNOWBIRD TIPS SECTION */
+    .tips-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-bottom: 40px;
+    }
+    .tips-section h2 {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+    .tips-section .sub {
+      font-style: italic;
+      color: var(--slate-mid);
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .tip-item {
+      background: var(--light-gray);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 18px 20px;
+    }
+    .tip-item h4 {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      font-weight: bold;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .tip-item p {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: var(--slate);
+      line-height: 1.6;
+    }
+
+    /* SUMMARY TABLE */
+    .comparison-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-bottom: 60px;
+    }
+    .comparison-section h2 {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--slate);
+      margin-bottom: 24px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+    }
+    thead th {
+      background: var(--slate);
+      color: white;
+      padding: 12px 14px;
+      text-align: left;
+      font-size: 11px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+    tbody tr:nth-child(even) {
+      background: var(--light-gray);
+    }
+    tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .dot {
+      display: inline-block;
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      margin-right: 2px;
+    }
+    .dot-green { background: #4CAF50; }
+    .dot-yellow { background: #FFC107; }
+    .dot-red { background: #F44336; }
+
+    /* APRIL TOUR SECTION */
+    .tour-section {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 36px 40px;
+      margin-bottom: 40px;
+    }
+    .tour-section h2 {
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--slate);
+      margin-bottom: 8px;
+    }
+    .tour-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: 24px;
+    }
+    .tour-item {
+      border-left: 3px solid var(--terracotta);
+      padding-left: 16px;
+    }
+    .tour-item h4 {
+      font-family: 'Arial', sans-serif;
+      font-size: 14px;
+      font-weight: bold;
+      color: var(--slate);
+      margin-bottom: 6px;
+    }
+    .tour-item p {
+      font-family: 'Arial', sans-serif;
+      font-size: 13px;
+      color: var(--slate-mid);
+      line-height: 1.6;
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--slate);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 30px 20px;
+      font-family: 'Arial', sans-serif;
+      font-size: 12px;
+    }
+
+    /* DIVIDER */
+    .divider {
+      height: 1px;
+      background: var(--border);
+      margin: 12px 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 28px; }
+      .budget-grid { grid-template-columns: 1fr; }
+      .ratings-row { grid-template-columns: repeat(3, 1fr); }
+      .pros-cons { grid-template-columns: 1fr; }
+      .details-grid { grid-template-columns: 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .tour-grid { grid-template-columns: 1fr; }
+      .card-header { flex-direction: column; }
+      .card-header-right { text-align: left; }
+    }
+
+    /* TOP PICK HIGHLIGHT */
+    .top-pick {
+      border: 2px solid var(--terracotta) !important;
+    }
+    .top-pick-banner {
+      background: var(--terracotta);
+      color: white;
+      text-align: center;
+      padding: 8px;
+      font-family: 'Arial', sans-serif;
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Bryant &amp; Anne — Private Relocation Research</div>
+  <h1>Phoenix Area Neighborhood Guide</h1>
+  <p>A curated look at 9 neighborhoods and towns across the metro — tailored to your lifestyle, financial picture, and April touring trip.</p>
+  <div class="hero-meta">
+    <span>April 2026 Visit</span>
+    <span>·</span>
+    <span>November–May Residency</span>
+    <span>·</span>
+    <span>4–5 Bed Home</span>
+    <span>·</span>
+    <span>9 Areas Reviewed</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav-bar">
+  <div class="nav-inner">
+    <a href="#budget">Budget</a>
+    <a href="#scottsdale-old-town">Old Town Scottsdale</a>
+    <a href="#arcadia">Arcadia</a>
+    <a href="#ahwatukee">Ahwatukee</a>
+    <a href="#gilbert">Gilbert</a>
+    <a href="#chandler">Chandler</a>
+    <a href="#north-scottsdale">N. Scottsdale</a>
+    <a href="#cave-creek">Cave Creek</a>
+    <a href="#fountain-hills">Fountain Hills</a>
+    <a href="#queen-creek">Queen Creek</a>
+    <a href="#comparison">Compare All</a>
+    <a href="#april-tour">April Tour Tips</a>
+  </div>
+</nav>
+
+<!-- BUDGET SECTION -->
+<div id="budget" class="budget-section container">
+  <h2>💰 Recommended Budget: $700,000 – $900,000</h2>
+  <div class="budget-grid">
+    <div class="budget-card">
+      <div class="label">Estimated Down Payment</div>
+      <div class="value">$300–350K</div>
+      <div class="sub">~$250K from Milwaukee equity + ~$75–100K cash</div>
+    </div>
+    <div class="budget-card">
+      <div class="label">Resulting Loan Amount</div>
+      <div class="value">$400–600K</div>
+      <div class="sub">At 7%: ~$2,700–$4,000/month P&amp;I</div>
+    </div>
+    <div class="budget-card">
+      <div class="label">Total Est. Housing Cost</div>
+      <div class="value">~$3,500–5,200/mo</div>
+      <div class="sub">Including AZ property tax + insurance</div>
+    </div>
+  </div>
+  <div class="budget-note">
+    <strong>Why this range makes sense for you:</strong> With ~$221K combined income (before Anne goes part-time) and ~$870K in deployable capital (cash + Milwaukee equity), you can comfortably carry a mortgage in this range without meaningfully disrupting your FIRE trajectory. AZ property taxes are low (~0.5–0.7% effective rate vs. Wisconsin's ~1.5–2%), which helps. At $800K with a $300K down payment, your monthly payment lands around $3,300–$4,500 all-in — well within 25–30% of your gross income. Going to $900K is still defensible given your net worth and Milwaukee rental income (~$105K gross/year still covers a lot). <strong>The ceiling I'd set is $950K</strong> — beyond that you'd be stretching without meaningful lifestyle gain for a semi-permanent residence.
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- ===== OLD TOWN SCOTTSDALE ===== -->
+  <div class="section-header">
+    <div class="section-tag">Phoenix Metro — Neighborhoods</div>
+    <h2>Inside the Metro</h2>
+    <p>Well-connected areas with access to the full range of Phoenix-area amenities</p>
+  </div>
+
+  <div id="scottsdale-old-town" class="neighborhood-card top-pick">
+    <div class="top-pick-banner">⭐ Top Pick — Best Overall Lifestyle Match</div>
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Old Town / Central Scottsdale</div>
+        <h3>Scottsdale — Old Town</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-good">Good Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$700K – $1.1M</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Old Town Scottsdale hits the lifestyle trifecta: walkable streets lined with restaurants and galleries, world-class golf right in your backyard, and Camelback Mountain 15 minutes away for the mornings when you need a great hike. It's the most "alive" neighborhood in the metro — the kind of place where you can walk to dinner on a Tuesday in November. For a couple coming from downtown Milwaukee who likes energy and convenience, this is the closest analog.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>50+ restaurants within walking distance — best dining in metro</li>
+            <li>Scottsdale Unified School District: top 5% in Arizona</li>
+            <li>Championship golf courses within 10 minutes in every direction</li>
+            <li>Camelback Mountain access (15 min to Echo Canyon trailhead)</li>
+            <li>Art galleries, boutiques, galleries — Old Town has genuine character</li>
+            <li>High walkability — unusual for Phoenix</li>
+            <li>Easy PHX Sky Harbor airport access (~15 min) for Milwaukee trips</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>Pricier than most areas — $700K buys you less square footage here</li>
+            <li>Lots tend to be smaller than other Phoenix suburbs</li>
+            <li>More tourist/nightlife energy which can feel busy in peak season (your season)</li>
+            <li>Traffic on Scottsdale Road on weekends</li>
+            <li>Competitive market — homes move fast at the right price</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-block">
+          <h5>⛳ Nearby Golf</h5>
+          <ul>
+            <li>Talking Stick Golf Club (public, 2 courses)</li>
+            <li>Gainey Ranch Golf Club</li>
+            <li>Camelback Golf Club</li>
+            <li>McCormick Ranch Golf Club (10 min)</li>
+            <li>TPC Scottsdale (10 min) — home of WM Phoenix Open</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🥾 Hiking Nearby</h5>
+          <ul>
+            <li>Camelback Mtn — Echo Canyon Trail (2.5 mi RT, strenuous)</li>
+            <li>Camelback Mtn — Cholla Trail (3.5 mi RT, moderate)</li>
+            <li>Papago Park (easy, unique red rock formations)</li>
+            <li>McDowell Sonoran Preserve (20 min)</li>
+            <li>Tom's Thumb Trail (25 min, 4 mi, challenging)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🏫 Schools</h5>
+          <ul>
+            <li>Scottsdale Unified — Top 5% in AZ</li>
+            <li>Saguaro High School (8/10 GreatSchools)</li>
+            <li>Coronado High School (B+ rating)</li>
+            <li>Pima Elementary (A- rating)</li>
+            <li>Private: Phoenix Country Day School (A+, best in AZ)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>At $750–850K you can find a 4-bed, 2.5-bath home around 2,200–2,800 sq ft — slightly smaller lots than other areas but well-maintained, often updated, with access to pools and community amenities. Expect ranch-style or Southwestern modern builds. Going $850K–950K opens up 3,000+ sq ft with more contemporary finishes and a private pool. Inventory is competitive; good homes at this range tend to get multiple offers.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/scottsdale-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A650000%2C%22max%22%3A1000000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22baths%22%3A%7B%22min%22%3A2%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Old Town Scottsdale</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Scottsdale_AZ/type-single-family-home/price-650000-1000000/beds-4" target="_blank">Search Realtor.com</a>
+        <a class="link-btn link-secondary" href="https://www.redfin.com/city/16660/AZ/Scottsdale/filter/property-type=house,min-price=650000,max-price=1000000,min-beds=4,min-baths=2" target="_blank">Search Redfin</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ARCADIA ===== -->
+  <div id="arcadia" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Phoenix — East Side / Scottsdale Border</div>
+        <h3>Arcadia</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-stretch">Budget Stretch (Upper Range)</div>
+        <div class="price-display">
+          <div class="price-range">$750K – $1.1M</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft (Arcadia Lite: $650–850K)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Arcadia is probably the most "charming" neighborhood in the Phoenix metro — mature citrus trees line the streets, the homes have character, and the restaurant scene along Thomas Road has become genuinely excellent. It sits right between Phoenix proper and Old Town Scottsdale, so you get the best of both. Look specifically at "Arcadia Lite" (south of Indian School Road) if you want the neighborhood feel at a friendlier price point.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>Most charming, established neighborhood feel in the metro</li>
+            <li>Excellent local restaurant scene (Postino, Culinary Dropout, Ingo's, Chelsea's Kitchen)</li>
+            <li>Scottsdale Unified schools — top 5% in Arizona</li>
+            <li>Camelback Mountain access essentially identical to Old Town</li>
+            <li>Canal trail system great for biking/running</li>
+            <li>Character homes — not cookie-cutter suburbs</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>Overall Arcadia median is $1.4M — true Arcadia is above your range</li>
+            <li>Arcadia Lite homes are more accessible but can feel transitional</li>
+            <li>Less walkable than Old Town for spontaneous errands</li>
+            <li>Homes sell slowly (avg 78 days) — market is selective</li>
+            <li>Older housing stock may need updates to reach modern feel you prefer</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-block">
+          <h5>⛳ Nearby Golf</h5>
+          <ul>
+            <li>Camelback Golf Club (5 min)</li>
+            <li>Papago Golf Course (public, acclaimed)</li>
+            <li>Scottsdale courses (10–15 min)</li>
+            <li>Arizona Biltmore Golf (15 min)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🥾 Hiking Nearby</h5>
+          <ul>
+            <li>Camelback Mtn — both trails close</li>
+            <li>Papago Park (10 min)</li>
+            <li>Arizona Canal biking/walking path</li>
+            <li>Piestewa Peak (15 min)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🏫 Schools</h5>
+          <ul>
+            <li>Scottsdale Unified District</li>
+            <li>Hopi Elementary (A- rating)</li>
+            <li>Ingleside Middle (A rating)</li>
+            <li>Arcadia High School (well-regarded)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>In Arcadia Lite, $700–850K can find you a 3–4 bed home around 1,800–2,400 sq ft, often with character (citrus trees, older ranch styling). True Arcadia at this price point is scarce and typically needs work. If Arcadia's charm appeals to you, budget $850K–950K for the most access, or focus your search specifically on Arcadia Lite where the dollars go further.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/phoenix-az/houses/?searchQueryState=%7B%22mapBounds%22%3A%7B%22west%22%3A-112.00%2C%22east%22%3A-111.92%2C%22south%22%3A33.46%2C%22north%22%3A33.52%7D%2C%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A650000%2C%22max%22%3A1000000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Arcadia Area</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Arcadia_Phoenix_AZ/type-single-family-home/price-650000-1000000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== AHWATUKEE ===== -->
+  <div id="ahwatukee" class="neighborhood-card top-pick">
+    <div class="top-pick-banner">⭐ Top Pick — Best Hiking + Golf Combo</div>
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">South Phoenix / Foothills</div>
+        <h3>Ahwatukee Foothills</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-excellent">Excellent Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$580K – $850K</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Ahwatukee is a hidden gem that most out-of-state buyers overlook. It sits tucked against South Mountain — the largest municipal park in the US — and has four golf courses within the community itself, including Foothills Golf Club, a Tom Weiskopf-designed 4-star Golf Digest course. Schools are elite (Kyrene District, top-performing in the state). It's suburban, quiet, and safe, but the outdoor access is second to none. The tradeoff is a less vibrant downtown walkability scene.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★<span class="empty">★★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★<span class="empty">★★★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>4 golf courses within the community — best in-neighborhood golf anywhere</li>
+            <li>South Mountain Park literally at your doorstep (miles of trails)</li>
+            <li>Kyrene School District — one of AZ's highest-rated, all A/B schools</li>
+            <li>BASIS Ahwatukee charter school (nationally ranked, tuition-free)</li>
+            <li>Rated "Grade A" for safety — one of Phoenix's safest areas</li>
+            <li>Strong budget fit — most space per dollar in this guide</li>
+            <li>Quiet, residential feel — great for a 6-month home base</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>No real walkable downtown or charming dining district</li>
+            <li>Must drive to Old Town Scottsdale (25–30 min) for upscale dining</li>
+            <li>Suburban, car-dependent outside trail systems</li>
+            <li>Can feel isolated from the broader Phoenix energy</li>
+            <li>Surrounded by I-10 to the north — freeway noise in some areas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-block">
+          <h5>⛳ Nearby Golf</h5>
+          <ul>
+            <li>Foothills Golf Club (4-star Golf Digest, Tom Weiskopf)</li>
+            <li>Club West Golf Course (7,002 yards, Par 72)</li>
+            <li>Ahwatukee Country Club (private)</li>
+            <li>Ahwatukee Lakes Golf Course</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🥾 Hiking Nearby</h5>
+          <ul>
+            <li>South Mountain Park — Telegraph Pass, Pyramid Trail, Fat Man's Pass</li>
+            <li>National Trail (12 mi, epic views)</li>
+            <li>Pima Canyon Trail (south approach)</li>
+            <li>Desert Awareness Park (easy, nature walks)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🏫 Schools</h5>
+          <ul>
+            <li>Kyrene School District (top-rated in AZ)</li>
+            <li>All schools rated A or B</li>
+            <li>BASIS Ahwatukee (grades 4–12, nationally ranked)</li>
+            <li>Desert Vista / Mountain Pointe HS (Tempe Union)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Your dollar genuinely stretches here. At $700–800K you're looking at 2,800–3,500 sq ft homes, 4–5 bedrooms, private pool, 3-car garages, and backing up to mountain preserve in some cases. Many homes are updated Southwestern or Tuscan-style. At $800–900K, you're firmly in newer construction territory with more contemporary finishes. This is the neighborhood where your budget gets you the most home.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/phoenix-az/houses/?searchQueryState=%7B%22mapBounds%22%3A%7B%22west%22%3A-112.00%2C%22east%22%3A-111.90%2C%22south%22%3A33.28%2C%22north%22%3A33.40%7D%2C%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A600000%2C%22max%22%3A950000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Ahwatukee</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Ahwatukee_Phoenix_AZ/type-single-family-home/price-600000-950000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GILBERT ===== -->
+  <div id="gilbert" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Southeast Valley / East Valley</div>
+        <h3>Gilbert</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-excellent">Excellent Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$600K – $850K</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Gilbert has quietly become one of the best-regarded family cities in the entire country — #8 school district in Arizona, a genuinely walkable and charming downtown called the Heritage District, and Agritopia, a unique urban farm community with its own restaurants and coffee shop. It's more suburban in character than Old Town Scottsdale, but it has a real sense of place and community that most Phoenix suburbs lack.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>#8 school district in Arizona — Gilbert Classical Academy is near top 100 nationally</li>
+            <li>Agritopia: unique farm-to-table community with genuine charm</li>
+            <li>Heritage District: 30+ walkable restaurants, craft bars</li>
+            <li>100+ miles of bike lanes and 35+ trails throughout city</li>
+            <li>Riparian Preserve at Water Ranch (70 acres, nature trails, birding)</li>
+            <li>Best budget fit for newer construction in the metro</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>No dramatic mountain hiking — flatter terrain than Scottsdale/Ahwatukee</li>
+            <li>20–25 min to central Scottsdale or Phoenix — less central location</li>
+            <li>More suburban feel — less "cool" factor than Arcadia or Old Town</li>
+            <li>Golf less concentrated than Scottsdale or Ahwatukee</li>
+            <li>Traffic on Loop 202 during peak hours</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-block">
+          <h5>⛳ Nearby Golf</h5>
+          <ul>
+            <li>Trilogy at Power Ranch Golf Club</li>
+            <li>Kokopelli Golf Club (Gilbert)</li>
+            <li>Superstition Springs Golf Club (Mesa, 10 min)</li>
+            <li>Multiple courses within 15 min</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🥾 Hiking Nearby</h5>
+          <ul>
+            <li>Riparian Preserve at Water Ranch (nature trails)</li>
+            <li>San Tan Mountain Regional Park (30 min)</li>
+            <li>Usery Mountain Park (Mesa, 20 min)</li>
+            <li>Superstition Mountains (30–35 min)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🏫 Schools</h5>
+          <ul>
+            <li>Gilbert Unified — #8 in Arizona</li>
+            <li>Gilbert Classical Academy (99.41/100 score)</li>
+            <li>Neely Traditional Academy (4th in AZ for elementary)</li>
+            <li>6 A+ recognized schools (2025)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Strong value here. At $700–800K you can find 3,200–4,000 sq ft newer construction homes with 4–5 bedrooms, 3 baths, private pool, 3-car garage, and very modern finishes. Gilbert has seen significant new development and you'll find homes that feel genuinely contemporary at this price. At $800–900K you're in larger or more premium lots, often in master-planned communities with amenities.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/gilbert-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A600000%2C%22max%22%3A950000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Gilbert</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Gilbert_AZ/type-single-family-home/price-600000-950000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CHANDLER ===== -->
+  <div id="chandler" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Southeast Valley — You Already Know This One</div>
+        <h3>Chandler</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-excellent">Excellent Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$575K – $825K</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Chandler is the one you've heard about for good reason — it's the most "complete" suburb in the Southeast Valley. Downtown Chandler has been quietly revitalized over the past few years with locally-owned restaurants, a craft brewery scene, and genuine pedestrian energy. Schools are strong, safety is excellent, and the housing prices are among the most favorable in the metro for the size and quality of home you'll get.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>Recently revitalized downtown — 40+ locally-owned restaurants</li>
+            <li>George &amp; Gather, The Brickyard, Hidden House — excellent dining</li>
+            <li>Strong school district; BASIS Chandler is nationally ranked</li>
+            <li>San Tan Mountain Regional Park nearby (34+ trails)</li>
+            <li>Best price-per-square-foot of any area in this guide</li>
+            <li>Veterans Oasis Park — 4.5 miles of paved trails, bird sanctuary</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>Downtown scene is growing but newer — less established than Old Town</li>
+            <li>Further from Camelback and the dramatic Scottsdale hiking</li>
+            <li>Golf less concentrated; need to drive to quality courses</li>
+            <li>More corporate/suburban feel — Intel, PayPal, Microchip Tech all headquartered here</li>
+            <li>Southern location adds time to PHX airport trips (20–25 min)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="details-grid">
+        <div class="detail-block">
+          <h5>⛳ Nearby Golf</h5>
+          <ul>
+            <li>Ocotillo Golf Club (public, Chandler — 27 holes)</li>
+            <li>San Marcos Golf Resort (historic public)</li>
+            <li>Whirlwind Golf Club (Chandler — 2 courses)</li>
+            <li>Many additional courses within 15 min</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🥾 Hiking Nearby</h5>
+          <ul>
+            <li>San Tan Mountain Regional Park (25 min)</li>
+            <li>Veterans Oasis Park (paved, nature walks)</li>
+            <li>Desert Breeze Park (easy, urban)</li>
+            <li>South Mountain (30 min)</li>
+          </ul>
+        </div>
+        <div class="detail-block">
+          <h5>🏫 Schools</h5>
+          <ul>
+            <li>Chandler Unified District (44 schools)</li>
+            <li>BASIS Chandler Primary North (9/10 GreatSchools)</li>
+            <li>Archway Classical Academy (10/10)</li>
+            <li>Chandler High School (solid ratings)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Chandler is where your budget goes furthest. At $700K you can find 3,500–4,500 sq ft newer homes with 5 bedrooms, 3 baths, pool, 3-car garage in master-planned communities. At $800–900K you can start looking at more custom builds, premium lot locations, or larger-than-average properties. Lots of new construction options at this price point.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/chandler-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A600000%2C%22max%22%3A950000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Chandler</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Chandler_AZ/type-single-family-home/price-600000-950000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NORTH SCOTTSDALE ===== -->
+  <div id="north-scottsdale" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">North Scottsdale — McCormick Ranch, DC Ranch</div>
+        <h3>North Scottsdale</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-stretch">Budget Stretch</div>
+        <div class="price-display">
+          <div class="price-range">$850K – $1.5M+</div>
+          <div class="price-label">4–5 bed (McCormick Ranch median: ~$1.1M)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">North Scottsdale is the resort golf capital of Arizona — TPC Scottsdale, Troon North, We-Ko-Pa, Grayhawk, Silverleaf — the list goes on. McCormick Ranch has 25+ miles of biking paths along the Indian Bend Greenbelt and a resort-like feel throughout. The challenge: pricing here typically runs above your stated range, and the area is more suburban/planned than Old Town. Worth walking if golf is your primary driver, but manage expectations on what $800–900K gets you.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★<span class="empty">★★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>World-class golf — TPC Scottsdale (WM Phoenix Open host), Troon North, Grayhawk</li>
+            <li>McCormick Ranch Golf Club: 2 championship 18-hole courses in community</li>
+            <li>25+ miles of greenbelt paths along Indian Bend Wash</li>
+            <li>McDowell Sonoran Preserve (30,000+ acres of trails)</li>
+            <li>Scottsdale Unified schools — top in state</li>
+            <li>Immaculate planned community design</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>Budget typically doesn't get you a 4–5 bed home — may need to stretch to $1M+</li>
+            <li>Very suburban/planned — less authentic character</li>
+            <li>Must drive to Old Town for dining and walkable scene (15 min)</li>
+            <li>Slower market (59 days avg) vs. rest of metro</li>
+            <li>Feels more like a resort community than a neighborhood</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Challenging. At $850–950K you're finding 3-bed townhome-style properties or older SFHs in McCormick Ranch that need updating. A true 4–5 bed SFH with modern finishes in this area typically starts at $1M+. If North Scottsdale golf access is non-negotiable, consider budgeting $1–1.1M or exploring smaller homes that you'd update over time.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/scottsdale-az/houses/?searchQueryState=%7B%22mapBounds%22%3A%7B%22west%22%3A-111.95%2C%22east%22%3A-111.78%2C%22south%22%3A33.52%2C%22north%22%3A33.72%7D%2C%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A750000%2C%22max%22%3A1100000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — N. Scottsdale</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/McCormick-Ranch_Scottsdale_AZ/type-single-family-home/price-750000-1100000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CAVE CREEK / CAREFREE ===== -->
+  <div id="cave-creek" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">North Valley — Western Character Town</div>
+        <h3>Cave Creek / Carefree</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-stretch">Budget Stretch (Upper Range)</div>
+        <div class="price-display">
+          <div class="price-range">$850K – $1.3M</div>
+          <div class="price-label">4–5 bed (Cave Creek median ~$979K)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Cave Creek and Carefree are genuinely unique — they feel like a different Arizona than the rest of the metro. Carefree has a charming pedestrian downtown with art galleries, jewelry boutiques, and good restaurants. Cave Creek has a Western saloon energy. Both sit at the edge of the Sonoran Desert with access to some of the best hiking in the state. The tradeoff: pricing is high, and you're 35–45 minutes from central Scottsdale.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>Spur Cross Ranch: 2,154 acres, miles of desert trails</li>
+            <li>Tonto National Forest access — primitive, rugged, spectacular</li>
+            <li>Championship golf: The Boulders (Jack Nicklaus), Legend Trail, Rancho Manana</li>
+            <li>Carefree downtown — charming, walkable, art-focused</li>
+            <li>Truly unique character — doesn't feel like suburban Phoenix</li>
+            <li>Less dense, more land per dollar than Scottsdale</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>Pricing mostly exceeds budget — limited inventory under $950K for 4-5 bed</li>
+            <li>35–45 min to central Phoenix/Scottsdale — isolated location</li>
+            <li>School district less distinguished than Scottsdale Unified or Kyrene</li>
+            <li>Very limited walkable amenities outside of small downtown core</li>
+            <li>More rural — not everyone's cup of tea for a primary residence</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Slim pickings at $900K or under for a 4–5 bed SFH in Cave Creek/Carefree. You might find a 3-bed home or older property that needs updating. If this area resonates with you after visiting, consider stretching the budget to $1–1.1M where homes open up significantly — you'll get larger lots (1+ acre), more desert character, and that unique lifestyle at scale.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/cave-creek-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A700000%2C%22max%22%3A1100000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Cave Creek</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Cave-Creek_AZ/type-single-family-home/price-700000-1100000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUTSIDE METRO -->
+  <div class="section-header">
+    <div class="section-tag">Outside the Metro — Within ~1 Hour</div>
+    <h2>Beyond the Metro</h2>
+    <p>Towns with a different character, lower prices, and access to additional outdoor terrain</p>
+  </div>
+
+  <!-- ===== FOUNTAIN HILLS ===== -->
+  <div id="fountain-hills" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Northeast Valley — Lakeside Town</div>
+        <h3>Fountain Hills</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-good">Good Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$650K – $950K</div>
+          <div class="price-label">4–5 bed (Median ~$720K)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Fountain Hills is unlike anywhere else in the Phoenix metro — it wraps around a man-made lake with one of the world's tallest fountains, and the whole town faces the McDowell Mountains. It has a small-town feel, genuine community events, and access to excellent hiking in the Sonoran Preserve. It sits about 35–40 minutes from Old Town Scottsdale and 45 minutes from central Phoenix. Worth visiting — it has a "wow" factor that surprises most people.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>Stunning setting — lakefront park, mountain views, world-famous fountain</li>
+            <li>Tom's Thumb and Western Trail — excellent McDowell Mountain hiking</li>
+            <li>Genuine small-town community feel with events and character</li>
+            <li>Lake Overlook Trail and scenic hiking unlike anywhere in metro</li>
+            <li>Good school district (Fountain Hills Unified)</li>
+            <li>Priced meaningfully below Scottsdale for similar quality homes</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>35–45 min to Scottsdale, 45+ min to central Phoenix — isolated</li>
+            <li>Limited dining and shopping compared to metro areas</li>
+            <li>Golf options fewer within community</li>
+            <li>Smaller town means fewer options for Anne's dermatology PA job search</li>
+            <li>The drive in/out on Shea Blvd or Palisades can feel long over time</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Excellent value relative to Scottsdale-area pricing. At $700–800K you can find well-kept 4–5 bed homes with views of the McDowell Mountains, desert landscaping, pools, and 2,800–3,500 sq ft. Many homes here have the kind of character and setting that's hard to find in more suburban areas. At $800–900K, you're looking at view lots and more premium builds.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/fountain-hills-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A600000%2C%22max%22%3A950000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Fountain Hills</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Fountain-Hills_AZ/type-single-family-home/price-600000-950000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== QUEEN CREEK ===== -->
+  <div id="queen-creek" class="neighborhood-card">
+    <div class="card-header">
+      <div class="card-header-left">
+        <div class="card-tag">Southeast — Farm Country Town / ~50 min from Phoenix</div>
+        <h3>Queen Creek</h3>
+      </div>
+      <div class="card-header-right">
+        <div class="fit-badge fit-excellent">Excellent Budget Fit</div>
+        <div class="price-display">
+          <div class="price-range">$600K – $800K</div>
+          <div class="price-label">4–5 bed, 2,500–3,500 sq ft (Median ~$655K)</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <p class="card-description">Queen Creek is a growing agricultural community that has evolved into a genuinely interesting small town with a farm-to-table ethos unlike anywhere else in the Phoenix metro. The Queen Creek Olive Mill is a must-visit, Barrio Queen does excellent Mexican, and San Tan Mountain Regional Park (just minutes away) offers 34+ trails across 10,000 acres. It's the furthest from central Phoenix in this guide, but the lifestyle is different in a way that some people find refreshing.</p>
+
+      <div class="ratings-row">
+        <div class="rating-item">
+          <div class="rating-icon">🚶</div>
+          <div class="rating-label">Walkability</div>
+          <div class="stars">★★<span class="empty">★★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🥾</div>
+          <div class="rating-label">Hiking</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">⛳</div>
+          <div class="rating-label">Golf</div>
+          <div class="stars">★★<span class="empty">★★★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🏫</div>
+          <div class="rating-label">Schools</div>
+          <div class="stars">★★★★<span class="empty">★</span></div>
+        </div>
+        <div class="rating-item">
+          <div class="rating-icon">🍽️</div>
+          <div class="rating-label">Dining / Scene</div>
+          <div class="stars">★★★<span class="empty">★★</span></div>
+        </div>
+      </div>
+
+      <div class="pros-cons">
+        <div class="pros">
+          <h4>✓ Pros</h4>
+          <ul>
+            <li>Best budget fit in the entire guide — most home for dollar</li>
+            <li>San Tan Mountain Regional Park (34+ trails, 10,000 acres)</li>
+            <li>Queen Creek Olive Mill: unique, farm-to-table anchor restaurant</li>
+            <li>Newer housing stock — most homes built post-2010</li>
+            <li>Queen Creek Unified District — above average and improving</li>
+            <li>Agricultural character — different, interesting lifestyle</li>
+          </ul>
+        </div>
+        <div class="cons">
+          <h4>✗ Cons</h4>
+          <ul>
+            <li>45–55 min to central Phoenix/Scottsdale — most remote in this guide</li>
+            <li>Golf access limited compared to other areas</li>
+            <li>Dining scene is growing but modest compared to metro areas</li>
+            <li>Less urban energy — truly a small town lifestyle</li>
+            <li>Anne's job market for derm PA would require longer commute</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="what-you-get">
+        <h5>💡 What $700K–$900K Gets You Here</h5>
+        <p>Your money goes the furthest here of any area in this guide. At $700K you could be looking at 4,000–5,000 sq ft new or newer construction on larger lots — pool, 4-car garage, 5 bedrooms. At $800–900K you're approaching custom home territory. The tradeoff is the commute distance from the city energy you'd both likely want access to.</p>
+      </div>
+
+      <div class="card-links">
+        <a class="link-btn link-primary" href="https://www.zillow.com/queen-creek-az/houses/?searchQueryState=%7B%22filterState%22%3A%7B%22price%22%3A%7B%22min%22%3A550000%2C%22max%22%3A900000%7D%2C%22beds%22%3A%7B%22min%22%3A4%7D%2C%22isAllHomes%22%3A%7B%22value%22%3Atrue%7D%7D%7D" target="_blank">Search Zillow — Queen Creek</a>
+        <a class="link-btn link-secondary" href="https://www.realtor.com/realestateandhomes-search/Queen-Creek_AZ/type-single-family-home/price-550000-900000/beds-4" target="_blank">Search Realtor.com</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPARISON TABLE -->
+  <div id="comparison" class="comparison-section">
+    <h2>📊 Side-by-Side Comparison</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Area</th>
+          <th>Budget Fit</th>
+          <th>Walk</th>
+          <th>Hiking</th>
+          <th>Golf</th>
+          <th>Schools</th>
+          <th>Dining</th>
+          <th>4–5 Bed Range</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Old Town Scottsdale</strong> ⭐</td>
+          <td><span class="dot dot-yellow"></span> Good</td>
+          <td>●●●●</td>
+          <td>●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>$700K – $1.1M</td>
+        </tr>
+        <tr>
+          <td><strong>Arcadia</strong></td>
+          <td><span class="dot dot-yellow"></span> Stretch</td>
+          <td>●●●</td>
+          <td>●●●●</td>
+          <td>●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●</td>
+          <td>$750K – $1.1M</td>
+        </tr>
+        <tr>
+          <td><strong>Ahwatukee Foothills</strong> ⭐</td>
+          <td><span class="dot dot-green"></span> Excellent</td>
+          <td>●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>●●</td>
+          <td>$580K – $850K</td>
+        </tr>
+        <tr>
+          <td><strong>Gilbert</strong></td>
+          <td><span class="dot dot-green"></span> Excellent</td>
+          <td>●●●</td>
+          <td>●●●</td>
+          <td>●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●</td>
+          <td>$600K – $850K</td>
+        </tr>
+        <tr>
+          <td><strong>Chandler</strong></td>
+          <td><span class="dot dot-green"></span> Excellent</td>
+          <td>●●●</td>
+          <td>●●●</td>
+          <td>●●●</td>
+          <td>●●●●</td>
+          <td>●●●●</td>
+          <td>$575K – $825K</td>
+        </tr>
+        <tr>
+          <td><strong>North Scottsdale</strong></td>
+          <td><span class="dot dot-yellow"></span> Stretch</td>
+          <td>●●</td>
+          <td>●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●</td>
+          <td>$850K – $1.5M+</td>
+        </tr>
+        <tr>
+          <td><strong>Cave Creek / Carefree</strong></td>
+          <td><span class="dot dot-yellow"></span> Stretch</td>
+          <td>●●●</td>
+          <td>●●●●●</td>
+          <td>●●●●●</td>
+          <td>●●●</td>
+          <td>●●●●</td>
+          <td>$850K – $1.3M</td>
+        </tr>
+        <tr>
+          <td><strong>Fountain Hills</strong></td>
+          <td><span class="dot dot-green"></span> Good</td>
+          <td>●●●</td>
+          <td>●●●●</td>
+          <td>●●●</td>
+          <td>●●●●</td>
+          <td>●●●</td>
+          <td>$650K – $950K</td>
+        </tr>
+        <tr>
+          <td><strong>Queen Creek</strong></td>
+          <td><span class="dot dot-green"></span> Excellent</td>
+          <td>●●</td>
+          <td>●●●●</td>
+          <td>●●</td>
+          <td>●●●●</td>
+          <td>●●●</td>
+          <td>$600K – $800K</td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-family: Arial, sans-serif; font-size: 12px; color: #888; margin-top: 12px;">● = 1 star · ●●●●● = 5 stars · ⭐ = Top Pick for your criteria</p>
+  </div>
+
+  <!-- SNOWBIRD TIPS -->
+  <div class="tips-section">
+    <h2>❄️ Snowbird / Semi-Permanent Resident Considerations</h2>
+    <p class="sub">Things that matter specifically for a Nov–May lifestyle, that most relocation guides skip</p>
+    <div class="tips-grid">
+      <div class="tip-item">
+        <h4>Arizona Property Taxes Are Refreshingly Low</h4>
+        <p>AZ's effective property tax rate is ~0.5–0.7% vs. Wisconsin's 1.5–2%. On an $800K home, expect ~$4,000–5,600/year in property taxes vs. $12,000–16,000 for a comparable Milwaukee property. This meaningfully improves your carrying cost math.</p>
+      </div>
+      <div class="tip-item">
+        <h4>HOA Rules on Short-Term Rentals</h4>
+        <p>Since you won't be there May–October, renting the home during summer could generate $3,000–5,000/month in short-term rental income. However, many HOAs in planned communities restrict this — research HOA rules carefully in any home you're serious about. Older/non-HOA areas like Arcadia and Old Town give you more flexibility.</p>
+      </div>
+      <div class="tip-item">
+        <h4>Pool Maintenance Remotely Is Very Manageable</h4>
+        <p>Monthly pool service in Phoenix runs $80–150/month and companies are plentiful. You can have your home "watched" professionally while in Wisconsin for relatively little cost. Many semi-permanent residents do this with no issues.</p>
+      </div>
+      <div class="tip-item">
+        <h4>Anne's Derm PA Job Market</h4>
+        <p>Scottsdale and North Phoenix/Paradise Valley have the most concentrated dermatology practices, reflecting the affluent snowbird-heavy patient population that drives demand for cosmetic derm. If Anne's practice location matters, areas like Old Town Scottsdale, Arcadia, and North Scottsdale put her closest to the highest-density derm clinic clusters.</p>
+      </div>
+      <div class="tip-item">
+        <h4>Establish AZ as Your Primary Residence for Tax Benefits</h4>
+        <p>Since Wisconsin has higher income taxes, switching your primary domicile to Arizona (lower flat state income tax of 2.5% as of 2023) could have meaningful benefits given your income. Worth discussing with a CPA, especially as you manage the Milwaukee rental portfolio remotely.</p>
+      </div>
+      <div class="tip-item">
+        <h4>Budget for the First Summer Away</h4>
+        <p>Even with professional management, first-year Phoenix homeowners often have a list of things to fix or update after the summer heat. Phoenix summers are extreme (~115°F peaks) — budget $3,000–5,000 for first-year carrying/maintenance costs as a buffer, especially for any home with an older HVAC system.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- APRIL TOUR TIPS -->
+  <div id="april-tour" class="tour-section">
+    <h2>🗺️ April Tour Itinerary — What to Do in Each Area</h2>
+    <p style="font-style: italic; color: var(--slate-mid); font-size: 14px; margin-bottom: 0;">April is perfect timing — the weather is excellent (75–90°F), the snowbird crowds are thinning, and you'll see the neighborhoods at their most authentic. Here's what to specifically look for and do in each area.</p>
+    <div class="tour-grid">
+      <div class="tour-item">
+        <h4>Old Town Scottsdale</h4>
+        <p>Walk 5th Avenue and Scottsdale Road. Have lunch at Culinary Dropout or Postino. Walk through the arts district. Drive through the residential streets east of Scottsdale Road between Indian School and Camelback — this is where the housing stock for your budget lives. Morning: hike Camelback's Echo Canyon trail (go early — busy by 8am in April).</p>
+      </div>
+      <div class="tour-item">
+        <h4>Arcadia</h4>
+        <p>Drive Thomas Road between 40th St and 68th St — this is the heart of Arcadia's restaurant corridor. Have brunch at Ingo's or Postino Arcadia. Walk through the residential streets south of Camelback — you'll feel the neighborhood's charm immediately. Note: canal path along the Arizona Canal is great for a walk with the stroller.</p>
+      </div>
+      <div class="tour-item">
+        <h4>Ahwatukee Foothills</h4>
+        <p>Drive Chandler Blvd through the neighborhood, then head to South Mountain Park. Hike the Telegraph Pass Trail (easy-moderate, stunning views). Stop by Foothills Golf Club and ask to tour. Drive the streets backing up to the mountain preserve — these are the premium lots. April temps are perfect for hiking here (vs. impossible in summer).</p>
+      </div>
+      <div class="tour-item">
+        <h4>Gilbert</h4>
+        <p>Start with breakfast at Joe's Farm Grill in Agritopia — you'll understand the community's character in 30 minutes. Walk through the Heritage District for lunch. Hit the Riparian Preserve at Water Ranch for a casual nature walk — great with a baby stroller. Drive through the Spectrum subdivision for an example of newer construction at your price point.</p>
+      </div>
+      <div class="tour-item">
+        <h4>Chandler</h4>
+        <p>Downtown Chandler is best experienced at dinner — try The Brickyard. Walk the downtown square during the day. If you can, ask a local realtor to show you homes in the north Chandler area (closer to Tempe border) and in south Chandler near the Warner/Germann area — two different vibes worth comparing.</p>
+      </div>
+      <div class="tour-item">
+        <h4>Cave Creek / Carefree</h4>
+        <p>Take Cave Creek Road north from Scottsdale. Stop in downtown Cave Creek for a drink at the Roadhouse. Continue to Carefree's town center — walk around, go into a gallery. Drive Spur Cross Road toward Spur Cross Ranch. Even a short drive shows why this area is special. Allow 45 min each way from Old Town Scottsdale.</p>
+      </div>
+      <div class="tour-item">
+        <h4>Fountain Hills</h4>
+        <p>Drive the Beeline Highway from Scottsdale — the approach into town is stunning. Go to Fountain Park and see the fountain in action (runs at the top of each hour). Walk the lakeside path. Have lunch downtown. Drive the ridgeline streets above town — the mountain views from these homes are dramatic. Note how it feels relative to other areas in terms of isolation.</p>
+      </div>
+      <div class="tour-item">
+        <h4>North Scottsdale (McCormick Ranch)</h4>
+        <p>Drive the Indian Bend Greenbelt — this tells you everything about the lifestyle here. Stop at McCormick Ranch Golf Club and ask to walk the course or have lunch at the clubhouse. Drive through DC Ranch to compare the luxury tier. Pricing context: note what $800–900K gets you here vs. what it gets you in Chandler or Ahwatukee.</p>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  Prepared for Bryant &amp; Anne — March 2026 &nbsp;·&nbsp; Phoenix Area Relocation Research &nbsp;·&nbsp; Prices reflect current market estimates and should be verified with a licensed AZ realtor
+</div>
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bryant's Projects</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:          #04091f;
+      --bg-card:     #0a1235;
+      --bg-card-alt: #0d1640;
+      --border:      #1a2660;
+      --border-glow: #2a3d8a;
+      --accent:      #4a8cff;
+      --accent-2:    #6fa3ff;
+      --accent-glow: rgba(74, 140, 255, 0.15);
+      --teal:        #38d9c0;
+      --teal-glow:   rgba(56, 217, 192, 0.12);
+      --white:       #ffffff;
+      --text-muted:  #7a90c4;
+      --text-sub:    #a8b8d8;
+      --radius:      12px;
+      --radius-lg:   18px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+    }
+
+    /* ─── PASSWORD GATE ─── */
+    #gate {
+      position: fixed; inset: 0; z-index: 1000;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    #gate.hidden { display: none; }
+
+    .gate-card {
+      width: 100%; max-width: 380px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 40px 36px;
+      text-align: center;
+    }
+    .gate-icon { font-size: 36px; margin-bottom: 16px; }
+    .gate-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+    .gate-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+
+    .gate-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 12px 16px;
+      font-size: 15px; font-family: 'Inter', sans-serif;
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+      margin-bottom: 12px;
+      text-align: center;
+      letter-spacing: 0.1em;
+    }
+    .gate-input:focus { border-color: var(--accent); }
+    .gate-input::placeholder { color: var(--text-muted); letter-spacing: normal; }
+
+    .gate-btn {
+      width: 100%;
+      background: var(--accent);
+      color: var(--bg);
+      border: none; cursor: pointer;
+      font-size: 14px; font-weight: 700; font-family: 'Inter', sans-serif;
+      padding: 13px;
+      border-radius: var(--radius);
+      transition: all 0.2s;
+    }
+    .gate-btn:hover { background: var(--accent-2); }
+
+    .gate-error {
+      font-size: 13px; color: #f87171;
+      margin-top: 10px; min-height: 18px;
+    }
+
+    /* ─── MAIN ─── */
+    #main { display: none; }
+    #main.visible { display: block; }
+
+    /* ─── HEADER ─── */
+    header {
+      padding: 48px 40px 32px;
+      max-width: 1100px; margin: 0 auto;
+      display: flex; align-items: flex-end; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-left {}
+    .header-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-2); margin-bottom: 8px;
+    }
+    .header-title {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800; letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #a8c4ff 60%, #6fa3ff 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .header-sub {
+      font-size: 14px; color: var(--text-muted); margin-top: 6px;
+    }
+    .header-count {
+      font-size: 13px; font-weight: 600; color: var(--text-muted);
+      background: var(--bg-card); border: 1px solid var(--border);
+      padding: 6px 14px; border-radius: 100px;
+    }
+    @media (max-width: 600px) { header { padding: 32px 20px 24px; } }
+
+    /* ─── GRID ─── */
+    .grid-wrap {
+      max-width: 1100px; margin: 0 auto;
+      padding: 32px 40px 80px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+    @media (max-width: 600px) { .grid-wrap { padding: 20px 16px 60px; gap: 12px; } }
+
+    /* ─── PROJECT CARD ─── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      text-decoration: none;
+      color: inherit;
+      display: flex; flex-direction: column;
+      transition: border-color 0.22s, transform 0.22s, box-shadow 0.22s;
+      cursor: pointer;
+    }
+    .card:hover {
+      border-color: var(--border-glow);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(74,140,255,0.12);
+    }
+
+    .card-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--bg-card-alt);
+      display: flex; align-items: center; justify-content: center;
+      border-bottom: 1px solid var(--border);
+      overflow: hidden; position: relative;
+    }
+    .card-thumb img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .card:hover .card-thumb img { transform: scale(1.03); }
+
+    .card-thumb-placeholder {
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 8px;
+      width: 100%; height: 100%;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255,255,255,0.015) 0px, rgba(255,255,255,0.015) 1px,
+        transparent 1px, transparent 12px
+      );
+    }
+    .thumb-emoji { font-size: 36px; opacity: 0.5; }
+    .thumb-label { font-size: 11px; color: var(--text-muted); font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    .card-body { padding: 20px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 3px 9px; border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .tag-blue  { color: var(--accent-2); background: var(--accent-glow); border: 1px solid rgba(74,140,255,0.2); }
+    .tag-teal  { color: var(--teal); background: var(--teal-glow); border: 1px solid rgba(56,217,192,0.2); }
+    .tag-purple { color: #c084fc; background: rgba(192,132,252,0.1); border: 1px solid rgba(192,132,252,0.2); }
+    .tag-pink  { color: #f472b6; background: rgba(244,114,182,0.1); border: 1px solid rgba(244,114,182,0.2); }
+    .tag-gold  { color: #fbbf24; background: rgba(251,191,36,0.1); border: 1px solid rgba(251,191,36,0.2); }
+
+    .card-title { font-size: 16px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+    .card-desc  { font-size: 13px; color: var(--text-sub); line-height: 1.6; flex: 1; }
+
+    .card-footer {
+      padding: 12px 22px;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .card-url { font-size: 11px; color: var(--text-muted); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 200px; }
+    .card-arrow {
+      font-size: 14px; color: var(--accent-2);
+      transition: transform 0.2s;
+    }
+    .card:hover .card-arrow { transform: translateX(3px); }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div id="gate">
+    <div class="gate-card">
+      <div class="gate-icon">🔒</div>
+      <div class="gate-title">Bryant's Projects</div>
+      <div class="gate-sub">Enter the password to continue.</div>
+      <input id="pw-input" type="password" class="gate-input" placeholder="Password" autocomplete="off" />
+      <button class="gate-btn" onclick="checkPassword()">Enter</button>
+      <div class="gate-error" id="gate-error"></div>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div id="main">
+    <header>
+      <div class="header-left">
+        <div class="header-eyebrow">Bryant Nankee</div>
+        <div class="header-title">Projects</div>
+        <div class="header-sub">Web builds, tools, and side projects.</div>
+      </div>
+      <div class="header-count" id="project-count"></div>
+    </header>
+
+    <div class="grid-wrap" id="grid">
+
+      <!-- 1: Portfolio Site -->
+      <a class="card" href="https://portfolio.bryantnankee.com" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">💼</div>
+            <div class="thumb-label">Portfolio Site</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-blue">Professional</span>
+          <div class="card-title">Personal Portfolio</div>
+          <div class="card-desc">Growth marketing portfolio — results, work samples, AI systems, and resume. Built with vanilla HTML, deployed on Cloudflare Pages.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">portfolio.bryantnankee.com</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 2: ECP Web Refresh -->
+      <a class="card" href="https://ecp-homepage-mockup.vercel.app/prototype.html" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">🌐</div>
+            <div class="thumb-label">ECP Prototype</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-teal">Work Project</span>
+          <div class="card-title">ECP Website Refresh</div>
+          <div class="card-desc">Prototype homepage mockup for the ecp123.com full website rebuild. Design exploration and layout concepts for the senior living SaaS platform.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">ecp-homepage-mockup.vercel.app</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 3: Anne's Derm Site -->
+      <a class="card" href="https://anne-pa-guide.vercel.app" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">🩺</div>
+            <div class="thumb-label">Anne PA Guide</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-purple">Personal</span>
+          <div class="card-title">Anne's Derm PA Guide</div>
+          <div class="card-desc">Resource site built for Anne — dermatology PA reference guide and patient resource tool.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">anne-pa-guide.vercel.app</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 4: Baby Shower -->
+      <a class="card" href="https://baby.thenankees.com" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">🍼</div>
+            <div class="thumb-label">Baby Shower</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-pink">Personal</span>
+          <div class="card-title">Nankee Baby Shower</div>
+          <div class="card-desc">Baby shower page for the arrival of Baby Nankee, July 2026. Built and hosted on thenankees.com.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">baby.thenankees.com</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 5: Camp Cleghorn -->
+      <a class="card" href="https://camp-cleghorn.pages.dev/" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">⛺</div>
+            <div class="thumb-label">Camp Cleghorn</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-gold">Client</span>
+          <div class="card-title">Camp Cleghorn</div>
+          <div class="card-desc">Website built for Camp Cleghorn. Hosted on Cloudflare.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">camp-cleghorn.pages.dev</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+      <!-- 6: Phoenix Neighborhood Guide -->
+      <a class="card" href="/phoenix" target="_blank" rel="noopener">
+        <div class="card-thumb">
+          <div class="card-thumb-placeholder">
+            <div class="thumb-emoji">🌵</div>
+            <div class="thumb-label">Phoenix Guide</div>
+          </div>
+        </div>
+        <div class="card-body">
+          <span class="card-tag tag-gold">Personal</span>
+          <div class="card-title">Phoenix Area Relocation Guide</div>
+          <div class="card-desc">Neighborhood research guide for Bryant & Anne's Phoenix exploration. Covers budget, neighborhoods inside and beyond the metro, side-by-side comparison, and April tour itinerary.</div>
+        </div>
+        <div class="card-footer">
+          <span class="card-url">projects.bryantnankee.com/phoenix</span>
+          <span class="card-arrow">→</span>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <script>
+    // ── Password — change this to whatever you want ──
+    const PASSWORD = 'nankee2026';
+
+    const STORAGE_KEY = 'bn_projects_auth';
+
+    function checkPassword() {
+      const val = document.getElementById('pw-input').value;
+      if (val === PASSWORD) {
+        localStorage.setItem(STORAGE_KEY, '1');
+        unlock();
+      } else {
+        document.getElementById('gate-error').textContent = 'Incorrect password.';
+        document.getElementById('pw-input').value = '';
+        document.getElementById('pw-input').focus();
+      }
+    }
+
+    function unlock() {
+      document.getElementById('gate').classList.add('hidden');
+      document.getElementById('main').classList.add('visible');
+      const cards = document.querySelectorAll('.card');
+      document.getElementById('project-count').textContent = cards.length + ' projects';
+    }
+
+    // Allow Enter key on password input
+    document.getElementById('pw-input').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') checkPassword();
+    });
+
+    // Check if already authenticated
+    if (localStorage.getItem(STORAGE_KEY) === '1') {
+      unlock();
+    }
+  </script>
+</body>
+</html>
