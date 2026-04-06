@@ -36,7 +36,7 @@
       min-height: 100vh;
     }
 
-    /* ─── PASSWORD GATE ─── */
+    /* ─── PIN GATE ─── */
     #gate {
       position: fixed; inset: 0; z-index: 1000;
       background: var(--bg);
@@ -46,50 +46,59 @@
     #gate.hidden { display: none; }
 
     .gate-card {
-      width: 100%; max-width: 380px;
+      width: 100%; max-width: 300px;
+      text-align: center;
+    }
+    .gate-title {
+      font-size: 15px; font-weight: 600; color: var(--text-muted);
+      letter-spacing: 0.04em; margin-bottom: 28px;
+      text-transform: uppercase; font-size: 11px; letter-spacing: 0.12em;
+    }
+
+    /* PIN dots */
+    .pin-dots {
+      display: flex; align-items: center; justify-content: center;
+      gap: 16px; margin-bottom: 36px;
+    }
+    .pin-dot {
+      width: 14px; height: 14px; border-radius: 50%;
+      border: 2px solid var(--border-glow);
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .pin-dot.filled {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .pin-dot.error {
+      background: #f87171;
+      border-color: #f87171;
+    }
+
+    /* Keypad grid */
+    .keypad {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .key {
       background: var(--bg-card);
       border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 40px 36px;
-      text-align: center;
-    }
-    .gate-icon { font-size: 36px; margin-bottom: 16px; }
-    .gate-title { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
-    .gate-sub { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
-
-    .gate-input {
-      width: 100%;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 12px 16px;
-      font-size: 15px; font-family: 'Inter', sans-serif;
+      padding: 18px 0;
+      font-size: 20px; font-weight: 600; font-family: 'Inter', sans-serif;
       color: var(--white);
-      outline: none;
-      transition: border-color 0.2s;
-      margin-bottom: 12px;
-      text-align: center;
-      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, transform 0.1s;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
     }
-    .gate-input:focus { border-color: var(--accent); }
-    .gate-input::placeholder { color: var(--text-muted); letter-spacing: normal; }
-
-    .gate-btn {
-      width: 100%;
-      background: var(--accent);
-      color: var(--bg);
-      border: none; cursor: pointer;
-      font-size: 14px; font-weight: 700; font-family: 'Inter', sans-serif;
-      padding: 13px;
-      border-radius: var(--radius);
-      transition: all 0.2s;
+    .key:hover { background: var(--bg-card-alt); border-color: var(--border-glow); }
+    .key:active { transform: scale(0.94); background: var(--border); }
+    .key.key-del {
+      font-size: 16px; color: var(--text-muted);
     }
-    .gate-btn:hover { background: var(--accent-2); }
-
-    .gate-error {
-      font-size: 13px; color: #f87171;
-      margin-top: 10px; min-height: 18px;
-    }
+    .key.key-empty { visibility: hidden; cursor: default; }
+    .key.key-empty:hover { background: var(--bg-card); border-color: var(--border); transform: none; }
 
     /* ─── MAIN ─── */
     #main { display: none; }
@@ -231,15 +240,30 @@
 </head>
 <body>
 
-  <!-- PASSWORD GATE -->
+  <!-- PIN GATE -->
   <div id="gate">
     <div class="gate-card">
-      <div class="gate-icon">🔒</div>
       <div class="gate-title">Bryant's Projects</div>
-      <div class="gate-sub">Enter the password to continue.</div>
-      <input id="pw-input" type="password" class="gate-input" placeholder="Password" autocomplete="off" />
-      <button class="gate-btn" onclick="checkPassword()">Enter</button>
-      <div class="gate-error" id="gate-error"></div>
+      <div class="pin-dots">
+        <div class="pin-dot" id="d0"></div>
+        <div class="pin-dot" id="d1"></div>
+        <div class="pin-dot" id="d2"></div>
+        <div class="pin-dot" id="d3"></div>
+      </div>
+      <div class="keypad">
+        <button class="key" onclick="pinPress('1')">1</button>
+        <button class="key" onclick="pinPress('2')">2</button>
+        <button class="key" onclick="pinPress('3')">3</button>
+        <button class="key" onclick="pinPress('4')">4</button>
+        <button class="key" onclick="pinPress('5')">5</button>
+        <button class="key" onclick="pinPress('6')">6</button>
+        <button class="key" onclick="pinPress('7')">7</button>
+        <button class="key" onclick="pinPress('8')">8</button>
+        <button class="key" onclick="pinPress('9')">9</button>
+        <button class="key key-empty" disabled></button>
+        <button class="key" onclick="pinPress('0')">0</button>
+        <button class="key key-del" onclick="pinDel()">⌫</button>
+      </div>
     </div>
   </div>
 
@@ -386,20 +410,40 @@
   </div>
 
   <script>
-    // ── Password — change this to whatever you want ──
-    const PASSWORD = 'nankee2026';
-
+    const PIN = '1007';
     const STORAGE_KEY = 'bn_projects_auth';
+    let entered = '';
 
-    function checkPassword() {
-      const val = document.getElementById('pw-input').value;
-      if (val === PASSWORD) {
+    function updateDots() {
+      for (let i = 0; i < 4; i++) {
+        document.getElementById('d' + i).classList.toggle('filled', i < entered.length);
+        document.getElementById('d' + i).classList.remove('error');
+      }
+    }
+
+    function pinPress(digit) {
+      if (entered.length >= 4) return;
+      entered += digit;
+      updateDots();
+      if (entered.length === 4) {
+        setTimeout(checkPin, 120);
+      }
+    }
+
+    function pinDel() {
+      entered = entered.slice(0, -1);
+      updateDots();
+    }
+
+    function checkPin() {
+      if (entered === PIN) {
         localStorage.setItem(STORAGE_KEY, '1');
         unlock();
       } else {
-        document.getElementById('gate-error').textContent = 'Incorrect password.';
-        document.getElementById('pw-input').value = '';
-        document.getElementById('pw-input').focus();
+        for (let i = 0; i < 4; i++) {
+          document.getElementById('d' + i).classList.add('error');
+        }
+        setTimeout(() => { entered = ''; updateDots(); }, 600);
       }
     }
 
@@ -410,15 +454,13 @@
       document.getElementById('project-count').textContent = cards.length + ' projects';
     }
 
-    // Allow Enter key on password input
-    document.getElementById('pw-input').addEventListener('keydown', (e) => {
-      if (e.key === 'Enter') checkPassword();
+    // Physical keyboard support
+    document.addEventListener('keydown', (e) => {
+      if (e.key >= '0' && e.key <= '9') pinPress(e.key);
+      if (e.key === 'Backspace') pinDel();
     });
 
-    // Check if already authenticated
-    if (localStorage.getItem(STORAGE_KEY) === '1') {
-      unlock();
-    }
+    if (localStorage.getItem(STORAGE_KEY) === '1') unlock();
   </script>
 </body>
 </html>
