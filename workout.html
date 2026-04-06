@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Workout — Bryant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:         #04091f;
+      --card:       #0a1235;
+      --card-alt:   #0d1640;
+      --border:     #1a2660;
+      --accent:     #4a8cff;
+      --accent-2:   #6fa3ff;
+      --teal:       #38d9c0;
+      --white:      #ffffff;
+      --muted:      #7a90c4;
+      --sub:        #a8b8d8;
+      --ramp-color: #4a8cff;
+      --full-color: #38d9c0;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--white);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── HEADER ─── */
+    .header {
+      padding: 52px 20px 16px;
+      padding-top: max(52px, calc(44px + env(safe-area-inset-top)));
+      background: var(--bg);
+      position: sticky; top: 0; z-index: 10;
+      border-bottom: 1px solid var(--border);
+    }
+    .header-top {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 14px;
+    }
+    .header-title { font-size: 22px; font-weight: 800; letter-spacing: -0.02em; }
+    .header-sub   { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+    /* Week tracker */
+    .week-tracker {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .week-btn {
+      width: 30px; height: 30px; border-radius: 50%;
+      background: var(--card); border: 1px solid var(--border);
+      color: var(--sub); font-size: 16px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .week-btn:active { background: var(--border); }
+    .week-badge {
+      font-size: 12px; font-weight: 700;
+      padding: 5px 12px; border-radius: 100px;
+      white-space: nowrap;
+    }
+    .week-badge.ramp {
+      color: var(--accent-2);
+      background: rgba(74,140,255,0.12);
+      border: 1px solid rgba(74,140,255,0.25);
+    }
+    .week-badge.full {
+      color: var(--teal);
+      background: rgba(56,217,192,0.1);
+      border: 1px solid rgba(56,217,192,0.2);
+    }
+
+    /* RPE bar */
+    .rpe-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 10px; padding: 10px 14px;
+    }
+    .rpe-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+    .rpe-val   { font-size: 13px; font-weight: 700; }
+    .rpe-val.ramp { color: var(--accent-2); }
+    .rpe-val.full { color: var(--teal); }
+    .rpe-desc  { font-size: 12px; color: var(--sub); }
+    .rpe-dot   { width: 5px; height: 5px; background: var(--border); border-radius: 50%; flex-shrink: 0; }
+
+    /* ─── TABS ─── */
+    .tabs {
+      display: flex; gap: 6px;
+      padding: 14px 20px 0;
+      background: var(--bg);
+      position: sticky; top: calc(116px); z-index: 9;
+    }
+    .tab {
+      flex: 1; padding: 9px 4px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      color: var(--muted);
+      font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      text-align: center; cursor: pointer;
+      transition: all 0.18s;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .tab .tab-day  { display: block; font-size: 10px; color: var(--muted); font-weight: 500; margin-bottom: 2px; }
+    .tab.active    { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+    .tab.active .tab-day { color: rgba(4,9,31,0.65); }
+
+    /* ─── CONTENT ─── */
+    .content { padding: 16px 20px 40px; }
+    .day-panel { display: none; }
+    .day-panel.active { display: block; }
+
+    /* Peloton note */
+    .peloton-note {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(56,217,192,0.07);
+      border: 1px solid rgba(56,217,192,0.18);
+      border-radius: 10px; padding: 11px 14px;
+      margin-bottom: 16px;
+    }
+    .peloton-icon { font-size: 18px; }
+    .peloton-text { font-size: 13px; color: var(--teal); font-weight: 500; }
+    .peloton-text span { color: rgba(56,217,192,0.65); font-weight: 400; }
+
+    /* Superset block */
+    .superset {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      margin-bottom: 12px;
+    }
+    .superset-header {
+      padding: 8px 16px;
+      background: var(--card-alt);
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .superset-label {
+      font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--accent-2);
+    }
+    .superset-note {
+      font-size: 10px; color: var(--muted); font-weight: 500;
+    }
+
+    /* Exercise row */
+    .exercise {
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+    }
+    .exercise:last-child { border-bottom: none; }
+    .ex-left { flex: 1; }
+    .ex-name { font-size: 15px; font-weight: 700; color: var(--white); margin-bottom: 4px; }
+    .ex-cue  { font-size: 12px; color: var(--sub); line-height: 1.45; }
+    .ex-sets {
+      font-size: 13px; font-weight: 800; color: var(--accent-2);
+      white-space: nowrap; padding-top: 1px; flex-shrink: 0;
+    }
+
+    /* Solo exercise (no pair) */
+    .solo .superset-label { color: var(--teal); }
+
+    /* Section divider */
+    .section-divider {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--muted); margin: 20px 0 10px; padding-left: 2px;
+    }
+
+    /* Checkbox rows for tracking sets */
+    .set-checks {
+      display: flex; gap: 6px; margin-top: 8px;
+    }
+    .set-check {
+      width: 24px; height: 24px; border-radius: 6px;
+      border: 1px solid var(--border);
+      background: transparent;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: all 0.15s;
+      -webkit-tap-highlight-color: transparent;
+      font-size: 13px;
+    }
+    .set-check.done {
+      background: var(--accent);
+      border-color: var(--accent);
+    }
+    .set-check.done::after { content: '✓'; color: var(--bg); font-weight: 800; font-size: 12px; }
+
+    /* Bottom safe area */
+    .bottom-pad { height: calc(20px + env(safe-area-inset-bottom)); }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="header-title">Workout</div>
+        <div class="header-sub">Push · Pull · Legs+Core</div>
+      </div>
+      <div class="week-tracker">
+        <button class="week-btn" onclick="adjustWeek(-1)">−</button>
+        <div class="week-badge ramp" id="week-badge">Week 1</div>
+        <button class="week-btn" onclick="adjustWeek(1)">+</button>
+      </div>
+    </div>
+    <div class="rpe-bar">
+      <div class="rpe-label">RPE</div>
+      <div class="rpe-val ramp" id="rpe-val">6–7</div>
+      <div class="rpe-dot"></div>
+      <div class="rpe-desc" id="rpe-desc">Controlled — 3+ reps left in the tank</div>
+    </div>
+  </div>
+
+  <!-- TABS -->
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab('push')">
+      <span class="tab-day">Monday</span>Push
+    </div>
+    <div class="tab" onclick="switchTab('pull')">
+      <span class="tab-day">Wednesday</span>Pull
+    </div>
+    <div class="tab" onclick="switchTab('legs')">
+      <span class="tab-day">Friday</span>Legs
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════════ -->
+  <!-- PUSH — Monday -->
+  <!-- ══════════════════════════════════════════ -->
+  <div class="content">
+    <div class="day-panel active" id="panel-push">
+
+      <div class="peloton-note">
+        <div class="peloton-icon">🚴</div>
+        <div class="peloton-text">Peloton after lifting <span>— 10–15 min easy ride</span></div>
+      </div>
+
+      <div class="section-divider">Superset A — Upper Chest + Shoulders</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">A1 + A2</div>
+          <div class="superset-note">No rest between A1 and A2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Incline Dumbbell Press</div>
+            <div class="ex-cue">Bench at 45–60°. Full range, slow 2-sec lower. This is the priority.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Lateral Raises</div>
+            <div class="ex-cue">Light weight. Lead with elbows, pause at top, controlled down.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 15</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Superset B — Chest + Triceps</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">B1 + B2</div>
+          <div class="superset-note">No rest between B1 and B2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Flat Dumbbell Press</div>
+            <div class="ex-cue">Squeeze chest hard at top. Elbows at ~75°, not flared out.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Overhead Tricep Extension</div>
+            <div class="ex-cue">Curl bar or single DB overhead. Elbows tight, full stretch at bottom.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 12</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Finisher — Shoulders</div>
+      <div class="superset solo">
+        <div class="superset-header">
+          <div class="superset-label">C</div>
+          <div class="superset-note">90 sec rest between sets</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Dumbbell Shoulder Press</div>
+            <div class="ex-cue">Seated or standing. Don't lock out at top — keep tension on delts.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- PULL — Wednesday -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="day-panel" id="panel-pull">
+
+      <div class="peloton-note">
+        <div class="peloton-icon">🚴</div>
+        <div class="peloton-text">Peloton after lifting <span>— 10–15 min easy ride</span></div>
+      </div>
+
+      <div class="section-divider">Superset A — Back + Biceps</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">A1 + A2</div>
+          <div class="superset-note">No rest between A1 and A2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Pull-ups</div>
+            <div class="ex-cue">Full hang to chin over bar. Add a DB between feet when bodyweight gets easy.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × max</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Dumbbell Curl</div>
+            <div class="ex-cue">Alternating. Full extension at the bottom — don't cheat the stretch.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 12</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Superset B — Back Thickness + Arm Size</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">B1 + B2</div>
+          <div class="superset-note">No rest between B1 and B2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Single-Arm Dumbbell Row</div>
+            <div class="ex-cue">Brace on bench. Go heavy. Pull elbow to hip, not shoulder. Hold 1 sec at top.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Hammer Curls</div>
+            <div class="ex-cue">Neutral grip. Hits brachialis — adds thickness to the arm, not just the peak.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 12</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Finisher — Rear Delts</div>
+      <div class="superset solo">
+        <div class="superset-header">
+          <div class="superset-label">C</div>
+          <div class="superset-note">90 sec rest between sets</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Rear Delt Fly</div>
+            <div class="ex-cue">Hinge forward at hips. Light weight, big arc, squeeze shoulder blades at top.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 15</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════ -->
+    <!-- LEGS + CORE — Friday -->
+    <!-- ══════════════════════════════════════════ -->
+    <div class="day-panel" id="panel-legs">
+
+      <div class="peloton-note">
+        <div class="peloton-icon">🚴</div>
+        <div class="peloton-text">Peloton after lifting <span>— 10–15 min easy ride</span></div>
+      </div>
+
+      <div class="section-divider">Superset A — Legs + Core</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">A1 + A2</div>
+          <div class="superset-note">No rest between A1 and A2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Front Squat (curl bar)</div>
+            <div class="ex-cue">Bar on shoulders, elbows up. Chest tall, squat to parallel. Start at 90lbs, add plates as you progress.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Hanging Knee Raises</div>
+            <div class="ex-cue">Pull-up bar. Slow and controlled — don't swing. Tuck knees to chest at top.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 12</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Superset B — Hamstrings + Core</div>
+      <div class="superset">
+        <div class="superset-header">
+          <div class="superset-label">B1 + B2</div>
+          <div class="superset-note">No rest between B1 and B2 · 60 sec after each round</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Romanian Deadlift</div>
+            <div class="ex-cue">Dumbbells, hinge at hips. Feel the hamstring stretch — don't bend the knees much. Slow lower.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 10</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Plank</div>
+            <div class="ex-cue">Squeeze glutes and abs hard. Don't let hips sag. 45 sec weeks 1–3, work up to 60 sec.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">3 × 45s</div>
+        </div>
+      </div>
+
+      <div class="section-divider">Finisher — Lunges</div>
+      <div class="superset solo">
+        <div class="superset-header">
+          <div class="superset-label">C</div>
+          <div class="superset-note">90 sec rest between sets</div>
+        </div>
+        <div class="exercise">
+          <div class="ex-left">
+            <div class="ex-name">Reverse Lunges</div>
+            <div class="ex-cue">Step back, not forward — easier on the knees. DBs at sides or goblet style. Keep chest up.</div>
+            <div class="set-checks">
+              <div class="set-check" onclick="toggleSet(this)"></div>
+              <div class="set-check" onclick="toggleSet(this)"></div>
+            </div>
+          </div>
+          <div class="ex-sets">2 × 10/leg</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bottom-pad"></div>
+  </div>
+
+  <script>
+    // ── Week tracking
+    let week = parseInt(localStorage.getItem('bn_workout_week') || '1');
+    renderWeek();
+
+    function adjustWeek(dir) {
+      week = Math.max(1, week + dir);
+      localStorage.setItem('bn_workout_week', week);
+      renderWeek();
+    }
+
+    function renderWeek() {
+      const badge = document.getElementById('week-badge');
+      const rpeVal = document.getElementById('rpe-val');
+      const rpeDesc = document.getElementById('rpe-desc');
+      const isRamp = week <= 3;
+
+      badge.textContent = 'Week ' + week;
+      badge.className = 'week-badge ' + (isRamp ? 'ramp' : 'full');
+
+      rpeVal.textContent = isRamp ? '6–7' : '8–9';
+      rpeVal.className = 'rpe-val ' + (isRamp ? 'ramp' : 'full');
+      rpeDesc.textContent = isRamp
+        ? 'Controlled — 3+ reps left in the tank'
+        : 'Working hard — last 1–2 reps are genuinely tough';
+    }
+
+    // ── Tab switching
+    function switchTab(day) {
+      document.querySelectorAll('.tab').forEach((t, i) => {
+        t.classList.toggle('active', ['push','pull','legs'][i] === day);
+      });
+      document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + day).classList.add('active');
+      // Reset checks on tab switch
+    }
+
+    // ── Set checkboxes
+    function toggleSet(el) {
+      el.classList.toggle('done');
+    }
+  </script>
+</body>
+</html>
